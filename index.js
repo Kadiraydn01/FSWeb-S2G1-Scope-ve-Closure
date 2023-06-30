@@ -118,8 +118,14 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
 }
   */
 
-function periyotSkoru(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
+function periyotSkoru(takimSkoru) {
+  const evSahibiSkoru = takimSkoru();
+  const konukTakimSkoru = takimSkoru();
+
+  return {
+    EvSahibi: evSahibiSkoru,
+    KonukTakim: konukTakimSkoru,
+  };
 }
 
 /* Zorlayıcı Görev 5: skorTabelasi() 
