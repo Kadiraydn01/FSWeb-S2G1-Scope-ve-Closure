@@ -159,8 +159,46 @@ MAÇ UZAR ise skorTabelasi(periyotSkoru,takimSkoru,4)
 ] */
 // NOTE: Bununla ilgili bir test yoktur. Eğer logladığınız sonuçlar yukarıdakine benziyor ise tmamlandı sayabilirsiniz.
 
-function skorTabelasi(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
+function skorTabelasi(periyotSkoru, takimSkoru, ceyrekSayisi) {
+  const skorlar = [];
+  let evSahibiSkoru = 0;
+  let konukTakimSkoru = 0;
+
+  for (let ceyrek = 1; ceyrek <= ceyrekSayisi; ceyrek++) {
+    const periyotSkorlari = periyotSkoru(takimSkoru);
+    const evSahibiSkor = periyotSkorlari.EvSahibi;
+    const konukTakimSkor = periyotSkorlari.KonukTakim;
+
+    evSahibiSkoru += evSahibiSkor;
+    konukTakimSkoru += konukTakimSkor;
+    skorlar.push(
+      `${ceyrek}. Periyot : Ev Sahibi ${evSahibiSkor} - Konuk Takım ${konukTakimSkor}`
+    );
+    if (ceyrek === ceyrekSayisi && evSahibiSkor === konukTakimSkor) {
+      let uzatma = 1;
+
+      while (evSahibiSkor === konukTakimSkor) {
+        const uzatmaSkorlari = periyotSkoru(takimSkoru);
+        const evSahibiUzatmaSkoru = uzatmaSkorlari.EvSahibi;
+        const konukTakimUzatmaSkoru = uzatmaSkorlari.KonukTakim;
+
+        evSahibiSkoru += evSahibiUzatmaSkoru;
+        konukTakimSkoru += konukTakimUzatmaSkoru;
+
+        skorlar.push(
+          `Uzatma ${uzatma}: Ev Sahibi ${evSahibiUzatmaSkoru} - Konuk Takım ${konukTakimUzatmaSkoru}`
+        );
+
+        uzatma++;
+      }
+    }
+  }
+
+  skorlar.push(
+    `Maç Sonucu: Ev Sahibi ${evSahibiSkoru} - Konuk Takım ${konukTakimSkoru}`
+  );
+
+  return skorlar;
 }
 
 /* Aşağıdaki satırları lütfen değiştirmeyiniz*/
