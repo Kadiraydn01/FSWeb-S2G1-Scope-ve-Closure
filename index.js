@@ -69,7 +69,7 @@ Not: Bu fonskiyon, aşağıdaki diğer görevler için de bir callback fonksiyon
 */
 
 function takimSkoru() {
-  return Math.floor(Math.random() * 15) + 10;
+  return Math.floor(Math.random() * 16) + 10;
 }
 
 /* Görev 3: macSonucu() 
@@ -87,8 +87,22 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
 }
 */
 
-function macSonucu(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
+function macSonucu(takimSkoru, ceyrekSayisi) {
+  let evSahibiSkoru = 0;
+  let konukTakimSkoru = 0;
+
+  for (let ceyrek = 1; ceyrek <= ceyrekSayisi; ceyrek++) {
+    const evSahibiSkor = takimSkoru();
+    const konukTakimSkor = takimSkoru();
+
+    evSahibiSkoru += evSahibiSkor;
+    konukTakimSkoru += konukTakimSkor;
+  }
+
+  return {
+    EvSahibi: evSahibiSkoru,
+    KonukTakim: konukTakimSkoru,
+  };
 }
 
 /* Zorlayıcı Görev 4: periyotSkoru()
